@@ -14,13 +14,15 @@ function Contact() {
     const formData = { name, email, message };
 
     try {
-      const response = await fetch("http://localhost:5000/api/enquiry", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
+  const API = import.meta.env.VITE_API_URL;
+
+  const response = await fetch(`${API}/api/enquiry`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData)
+  });
 
       if (response.ok) {
         setSuccess(true);
