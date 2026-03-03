@@ -112,7 +112,7 @@ function Contact() {
         <button type="submit">Send Inquiry</button>
       </form>
 
-      <h3 style={{marginTop:"30px"}}>📞 +91 9945325878</h3>
+      <h3 style={{marginTop:"30px"}}>📞 +91 8123191711</h3>
       <h3>📍 UgarBudruk, Karnataka, India</h3>
 
       {/* ✅ Onion Blast Effect */}
