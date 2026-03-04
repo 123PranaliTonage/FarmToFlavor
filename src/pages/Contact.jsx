@@ -4,6 +4,7 @@ function Contact() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");   // ✅ Added
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
   const [showBlast, setShowBlast] = useState(false);
@@ -11,18 +12,18 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = { name, email, message };
+    const formData = { name, email, phone, message };
 
     try {
-  const API = import.meta.env.VITE_API_URL;
+      const API = import.meta.env.VITE_API_URL;
 
-  const response = await fetch(`${API}/api/enquiry`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(formData)
-  });
+      const response = await fetch(`${API}/api/enquiry`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
 
       if (response.ok) {
         setSuccess(true);
@@ -30,6 +31,7 @@ function Contact() {
 
         setName("");
         setEmail("");
+        setPhone("");      // ✅ Clear phone
         setMessage("");
 
         setShowBlast(true);
@@ -103,9 +105,20 @@ function Contact() {
           style={{width:"100%", padding:"12px", marginBottom:"15px", borderRadius:"10px"}}
         />
 
+        {/* ✅ Phone Field Added */}
+        <input
+          type="text"
+          placeholder="Phone"
+          required
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          style={{width:"100%", padding:"12px", marginBottom:"15px", borderRadius:"10px"}}
+        />
+
         <textarea
           placeholder="Message"
           rows="4"
+          required
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           style={{width:"100%", padding:"12px", marginBottom:"15px", borderRadius:"10px"}}
@@ -117,7 +130,7 @@ function Contact() {
       <h3 style={{marginTop:"30px"}}>📞 +91 8123191711</h3>
       <h3>📍 UgarBudruk, Karnataka, India</h3>
 
-      {/* ✅ Onion Blast Effect */}
+      {/* Onion Blast Effect */}
       {showBlast && (
         <div style={overlayStyle}>
           {[...Array(30)].map((_, i) => (
